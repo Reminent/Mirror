@@ -1,12 +1,21 @@
-window.onload = start_mirror;
+var discoveryDocs = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+var oauthClientId = "523270750292-h66kiavdaoqai49gal1rcdlq4jk02doj.apps.googleusercontent.com";
+var googleApiKey = "AIzaSyCkVarR4FD_16i0LiEDwz_W_hitHP3gAhk";
+var scopes = "https://www.googleapis.com/auth/calendar.readonly";
 
-function start_mirror() {
+function startMirror() {
+  date();
+  time();
+  week();
   weather();
+  setInterval(function() {
+    weather();
+  }, 3600*1000);
   setInterval(function() {
     date();
     time();
     week();
-  }, 500);
+  }, 500*1000);
 };
 
 function weather() {
@@ -14,8 +23,7 @@ function weather() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var weatherData = JSON.parse(this.responseText)
-      var hej = "hej"
+      var weatherData = JSON.parse(this.responseText);
       var jsonTime,
           todayDate, todayMorning, todayDay, todayNight,
           temperatureMorning = [], temperatureDay = [], temperatureNight = [];
@@ -51,9 +59,7 @@ function weather() {
         };
       };
 
-      document.getElementById("weather").innerHTML =  "temp morning: " + averageTemp(temperatureMorning) + "<br>" +
-                                                      "temp day: " + averageTemp(temperatureDay) + "<br>" +
-                                                      "temp night: " + averageTemp(temperatureNight);
+      writeWeather(temperatureMorning, temperatureDay, temperatureNight);
     };
   };
   xhttp.open("GET", weatherUrl, true);
@@ -62,13 +68,28 @@ function weather() {
 
 function getSum(total, num) {
   return total + num;
-}
+};
 
 function averageTemp(tempArr) {
   if(tempArr.length > 0){
     return Math.round((tempArr.reduce(getSum)/tempArr.length)*10)/10;
+  } else {
+    return null;
   };
-}
+};
+function writeWeather(morning, day, night) {
+  if(averageTemp(morning) != null) {
+    document.getElementById("weather").innerHTML += '<div class="morning-weather">Morgon: ' + averageTemp(morning) + '℃</div>';
+  };
+
+  if(averageTemp(day) != null) {
+    document.getElementById("weather").innerHTML += '<div class="day-weather">Dag: ' + averageTemp(day) + '℃</div>';
+  };
+
+  if(averageTemp(night) != null) {
+    document.getElementById("weather").innerHTML += '<div class="night-weather">Kväll: ' + averageTemp(night) + '℃</div>';
+  };
+};
 
 function date() {
   var today;
@@ -96,9 +117,5 @@ function time() {
   if(h < 10){
     h = "0" + h;
   }
-  document.getElementById("time").innerHTML = h + ":" + m;
-};
-
-function calendar() {
-
+  document.getElementById("clock").innerHTML = h + ":" + m;
 };

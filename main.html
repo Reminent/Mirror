@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Magic Mirror</title>
-<script src="main.js"></script>
-<link rel="stylesheet" href="main.css">
-</head>
-<body>
-<div id="date"></div>
-<div id="time"></div>
-<div id="week"></div>
-<div id="calendar"></div>
-<div id="weather"></div>
-</body>
-
+  <head>
+    <meta charset="UTF-8">
+    <title>Magic Mirror</title>
+    <script src="googleCalendar.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+    <link rel="stylesheet" href="main.css">
+    <script async defer src="main.js"
+      onload="this.onload=function(){};startMirror()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+  </head>
+  <body>
+    <div class="date-time">
+      <div id="date"></div>
+      <div id="clock"></div>
+      <div id="week"></div>
+    </div>
+    <div id="calendar"></div>
+    <div id="weather"></div>
+  </body>
 </html>

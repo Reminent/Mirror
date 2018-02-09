@@ -1,4 +1,35 @@
-body{
-  background-color: black;
+body {
+  background: black;
   color: white;
-}
+  font-size: 30px;
+  width: 100vw;
+  height: 100vh; }
+  body .date-time {
+    text-align: center;
+    height: 50px;
+    margin: 10px; }
+    body .date-time #date {
+      width: 30%;
+      float: left; }
+    body .date-time #clock {
+      width: 20%;
+      float: left; }
+    body .date-time #week {
+      width: 20%;
+      float: right; }
+
+#calendar {
+  width: 30%;
+  float: left;
+  margin: 10px 10px 10px 40px; }
+  #calendar .calendar-entry {
+    margin: 10px 0;
+    border-bottom: 1px solid white; }
+
+#weather {
+  width: 50%;
+  float: right;
+  text-align: right;
+  margin: 10px 40px 10px 10px; }
+
+/*# sourceMappingURL=main.css.map */
