@@ -10,6 +10,7 @@ function startMirror() {
   weather();
   setInterval(function() {
     weather();
+    handleClientLoad();
   }, 3600*1000);
   setInterval(function() {
     date();
@@ -79,15 +80,15 @@ function averageTemp(tempArr) {
 };
 function writeWeather(morning, day, night) {
   if(averageTemp(morning) != null) {
-    document.getElementById("weather").innerHTML += '<div class="morning-weather">Morgon: ' + averageTemp(morning) + '℃</div>';
+    document.getElementById("weather").innerHTML = '<div class="morning-weather">Morgon: ' + averageTemp(morning) + '℃</div>';
   };
 
   if(averageTemp(day) != null) {
-    document.getElementById("weather").innerHTML += '<div class="day-weather">Dag: ' + averageTemp(day) + '℃</div>';
+    document.getElementById("weather").innerHTML = '<div class="day-weather">Dag: ' + averageTemp(day) + '℃</div>';
   };
 
   if(averageTemp(night) != null) {
-    document.getElementById("weather").innerHTML += '<div class="night-weather">Kväll: ' + averageTemp(night) + '℃</div>';
+    document.getElementById("weather").innerHTML = '<div class="night-weather">Kväll: ' + averageTemp(night) + '℃</div>';
   };
 };
 
