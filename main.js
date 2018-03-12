@@ -79,17 +79,19 @@ function averageTemp(tempArr) {
   };
 };
 function writeWeather(morning, day, night) {
+  var daysWeather = '';
   if(averageTemp(morning) != null) {
-    document.getElementById("weather").innerHTML = '<div class="morning-weather">Morgon: ' + averageTemp(morning) + '℃</div>';
+    daysWeather += '<div class="morning-weather">Morgon: ' + averageTemp(morning) + '℃</div>';
   };
 
   if(averageTemp(day) != null) {
-    document.getElementById("weather").innerHTML = '<div class="day-weather">Dag: ' + averageTemp(day) + '℃</div>';
+    daysWeather += '<div class="day-weather">Dag: ' + averageTemp(day) + '℃</div>';
   };
 
   if(averageTemp(night) != null) {
-    document.getElementById("weather").innerHTML = '<div class="night-weather">Kväll: ' + averageTemp(night) + '℃</div>';
+    daysWeather += '<div class="night-weather">Kväll: ' + averageTemp(night) + '℃</div>';
   };
+  document.getElementById("weather").innerHTML = daysWeather;
 };
 
 function date() {
