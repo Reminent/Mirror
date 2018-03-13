@@ -31,7 +31,7 @@ function appendPre(title, calendarDate) {
                       '<div class="calendar-entry-title">' + title + '</div>' +
                       '<div class="calendar-entry-date">' + calendarDate + '</div>' +
                     '</div>';
-  pre.innerHTML += textContent;
+  return textContent;
 };
 
 function listUpcomingEvents() {
@@ -45,6 +45,8 @@ function listUpcomingEvents() {
     'orderBy': 'startTime'
   }).then(function(response) {
     var events = response.result.items;
+    var processedEvents = "";
+    var pre = document.getElementById('calendar');
 
     if (events.length > 0) {
       for (i = 0; i < events.length; i++) {
@@ -53,8 +55,9 @@ function listUpcomingEvents() {
         if (!when) {
           when = event.start.date;
         }
-        appendPre(event.summary, when)
+        processedEvents += appendPre(event.summary, when);
       }
+      pre.innerHTML = processedEvents;
     } else {
       appendPre('No upcoming events found.');
     }
