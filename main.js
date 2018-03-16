@@ -106,7 +106,7 @@ function week() {
   d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
   var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
   var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
-  document.getElementById("week").innerHTML = weekNo;
+  document.getElementById("week").innerHTML = "V. " + weekNo;
 };
 
 function time() {

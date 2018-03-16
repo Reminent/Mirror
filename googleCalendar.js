@@ -29,9 +29,20 @@ function appendPre(title, calendarDate) {
   var pre = document.getElementById('calendar');
   var textContent = '<div class="calendar-entry">' +
                       '<div class="calendar-entry-title">' + title + '</div>' +
-                      '<div class="calendar-entry-date">' + calendarDate + '</div>' +
+                      '<div class="calendar-entry-date">' + formatCalendarDate(calendarDate) + '</div>' +
                     '</div>';
   return textContent;
+};
+
+function formatCalendarDate(unformatedDate) {
+  var splitTime = "";
+  var splitDate = unformatedDate.split("T");
+  if(splitDate.length > 1) {
+
+    splitTime = splitDate[1].split(":");
+    splitTime = splitTime[0] + ":" + splitTime[1];
+  }
+  return splitDate[0] + " " + splitTime;
 };
 
 function listUpcomingEvents() {
