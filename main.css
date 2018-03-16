@@ -7,16 +7,18 @@ body {
   body .date-time {
     text-align: center;
     height: 50px;
-    margin: 10px; }
+    margin: 10px 40px; }
     body .date-time #date {
       width: 30%;
-      float: left; }
+      float: left;
+      text-align: left; }
     body .date-time #clock {
-      width: 20%;
+      width: 30%;
       float: left; }
     body .date-time #week {
-      width: 20%;
-      float: right; }
+      width: 30%;
+      float: right;
+      text-align: right; }
 
 #calendar {
   width: 30%;
